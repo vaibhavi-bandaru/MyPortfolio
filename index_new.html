@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Therapy and Guidance System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('https://practicebusiness.co.uk/wp-content/uploads/2021/01/iStock-1222623988.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding-top: 60px; /* space for marquee */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3); /* subtle overlay for better contrast */
+  z-index: -1;
+}
+
+    .top-marquee {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 10px 0;
+      z-index: 10;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .buttons button {
+      margin: 10px;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+      color: #9333ea;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.05);
+      background-color: #f0f0f0;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      color: #333;
+      border-radius: 20px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card img {
+      height: 48px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-marquee">
+    <marquee behavior="scroll" direction="left" style="color: white;">
+      <i><u>Welcome to online therapy with guidance</u></i>
+    </marquee>
+  </div>
+
+  <div class="container">
+    <h1 style="color:white; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">
+      ONLINE THERAPY AND GUIDANCE SYSTEM
+    </h1>
+    
+    <div class="buttons">
+      <button onclick="handleLogin()">Login</button>
+      <button onclick="handleRegister()">Register</button>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <img src="https://mpowerminds.com/assetOLD/images/is-online-counselling-as-effective-as-offline-counselling.jpg" alt="Personalized icon"/>
+        <h2>Personalized Therapy</h2>
+        <p>Matched with the right professionals to guide your mental wellness journey.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/color/48/yoga.png" alt="Yoga Icon"/>
+        <h2>Holistic Approach</h2>
+        <p>Combining modern, traditional, and alternative methods in one platform.</p>
+      </div>
+      <div class="card">
+        <img src="https://img.icons8.com/color/48/alarm-clock.png" alt="Clock Icon"/>
+        <h2>Anytime Support</h2>
+        <p>Book appointments and get help whenever you need it the most.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function handleLogin() {
+      window.location.href = "login.html";
+    }
+
+    function handleRegister() {
+      window.location.href = "register.html";
+    }
+  </script>
+</body>
+</html>

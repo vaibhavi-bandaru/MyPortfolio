@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Online Therapy and Guidance System</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: white; /* White background like registration */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #6a1b9a; /* Purple text */
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      border: 2px solid #6a1b9a; /* Purple border */
+    }
+
+    .login-container h2 {
+      text-align: center;
+      color: #6a1b9a; /* Purple heading */
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #6a1b9a; /* Purple label text */
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1.5px solid #c2a7d8;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #f9fafb;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #6a1b9a; /* Purple button */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4a0072; /* Darker purple on hover */
+    }
+
+    .domain-note {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #6a1b9a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="domain">Select Domain</label>
+      <select id="domain" required>
+        <option value="">-- Choose Domain --</option>
+        <option value="admin">Admin</option>
+        <option value="doctor">Modern Medical System Doctors(MBBS)</option>
+        <option value="doctor">Traditional Medical System Doctors(Ayurvedic)</option>
+        <option value="patient">Patient</option>
+        <option value="trainer">Yoga Trainer</option>
+      </select>
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="domain-note">
+      Make sure to select your correct role before logging in.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const domain = document.getElementById("domain").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (!domain || !username || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      alert(`Logged in as ${domain.toUpperCase()}:\nUsername: ${username}`);
+    });
+  </script>
+</body>
+</html>
