@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Doctor Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h2 { color: #6a1b9a; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #6a1b9a; color: white; }
+  </style>
+</head>
+<body>
+
+  <h2>Your Patients</h2>
+  <table id="patientsTable">
+    <thead><tr><th>Name</th><th>Email</th><th>Contact</th><th>Symptoms</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function fetchPatients() {
+      try {
+        const res = await axios.get(`http://localhost:3000/api/admin/patients`);
+        const rows = res.data.map(p => `
+          <tr>
+            <td>${p.username}</td>
+            <td>${p.email}</td>
+            <td>${p.contact}</td>
+            <td>${p.symptoms}</td>
+          </tr>
+        `).join('');
+        document.querySelector("#patientsTable tbody").innerHTML = rows;
+      } catch (err) {
+        console.error("Failed to load patients", err);
+      }
+    }
+
+    fetchPatients();
+  </script>
+
+</body>
+</html>

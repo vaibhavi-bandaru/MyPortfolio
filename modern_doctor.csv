@@ -1,0 +1,10 @@
+﻿username,password,doctor_name,specializiation,purpose,op_fee,timimgs,email
+raghu_majji,123456,majji raghu,Cardiologist,heart and blood vessel disorders.,300,5PM-9PM,raghumajji@gmail.com
+vaibhavi_0410,123456,Vaibhavi Bandaru,Neurologist,"Deals with diseases of the nervous system (brain, spinal cord, nerves).",400,6PM-8PM,vaibhavi@gmail.com
+saieswari_1919,123456,Sai Eswari,Gynecologist,Focuses on the female reproductive system and women's health.,300,5PM-7PM,saieswari@gmail.com
+supriya_2709,123456,Supriya,Psychiatrist,Treats mental health and emotional disorders (can prescribe medicine).,300,7PM-9PM,supriya@gmail.com
+divya_4444,123456,Divya,Pediatrician,"Cares for infants, children, and adolescents.",300,8AM-11AM,divya@gmail.com
+vyshnavi_2606,123456,Vyshnavi,Nephrologist,Nephrologist,400,12PM-2PM,vyshnavi@gmail.com
+sravani_2005,123456,sravani,Radiologist,"Interprets imaging like X-rays, CT scans, and MRIs.",250,9AM-11AM,sravani@gmail.com
+anjali_20004,123456,anjali,Gastroenterologist,"Deals with the digestive system (stomach, intestines, liver)",400,1PM-5PM,anjali@gmail.com
+ganesh_2006,123456,ganesh,Urologist,Focuses on urinary tract and male reproductive organs.,350,6PM-9PM,ganesh@gmail.com

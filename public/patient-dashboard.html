@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #6a1b9a; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #6a1b9a; color: white; }
+  </style>
+</head>
+<body>
+
+  <h2>Available Doctors</h2>
+  <table id="doctorsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be injected here -->
+    </tbody>
+  </table>
+
+  <script>
+    async function fetchDoctors() {
+      try {
+        const res = await axios.get('http://localhost:3000/api/admin/doctors');
+        if (res.status === 200 && Array.isArray(res.data)) {
+          const rows = res.data.map(d => `
+            <tr>
+              <td>${d.username || 'N/A'}</td>
+              <td>${d.email || 'N/A'}</td>
+              <td>${d.contact || 'N/A'}</td>
+              <td>${d.doctorType || 'N/A'}</td>
+            </tr>
+          `).join('');
+          document.querySelector("#doctorsTable tbody").innerHTML = rows;
+        } else {
+          console.error("Unexpected response format", res.data);
+        }
+      } catch (err) {
+        console.error("Failed to load doctors", err);
+        document.querySelector("#doctorsTable tbody").innerHTML = `
+          <tr><td colspan="4" style="color: red;">Error loading data</td></tr>
+        `;
+      }
+    }
+
+    // Call on page load
+    fetchDoctors();
+  </script>
+
+</body>
+</html>

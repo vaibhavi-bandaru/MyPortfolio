@@ -4,17 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | Online Therapy and Guidance System</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: blur(6px) brightness(0.7);
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: white; /* White background like registration */
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #6a1b9a; /* Purple text */
+      color: #6a1b9a;
     }
 
     .login-container {
@@ -24,12 +35,14 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
-      border: 2px solid #6a1b9a; /* Purple border */
+      border: 2px solid #6a1b9a;
+      position: relative;
+      z-index: 1;
     }
 
     .login-container h2 {
       text-align: center;
-      color: #6a1b9a; /* Purple heading */
+      color: #6a1b9a;
       margin-bottom: 20px;
     }
 
@@ -37,7 +50,7 @@
       display: block;
       margin-top: 15px;
       font-weight: 600;
-      color: #6a1b9a; /* Purple label text */
+      color: #6a1b9a;
     }
 
     input, select {
@@ -54,7 +67,7 @@
       margin-top: 25px;
       width: 100%;
       padding: 12px;
-      background-color: #6a1b9a; /* Purple button */
+      background-color: #6a1b9a;
       color: white;
       border: none;
       border-radius: 8px;
@@ -65,7 +78,7 @@
     }
 
     button:hover {
-      background-color: #4a0072; /* Darker purple on hover */
+      background-color: #4a0072;
     }
 
     .domain-note {
@@ -78,6 +91,12 @@
 </head>
 <body>
 
+  <!-- Background video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="bg_vd2.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
   <div class="login-container">
     <h2>Login</h2>
     <form id="loginForm">
@@ -85,14 +104,14 @@
       <select id="domain" required>
         <option value="">-- Choose Domain --</option>
         <option value="admin">Admin</option>
-        <option value="doctor">Modern Medical System Doctors(MBBS)</option>
-        <option value="doctor">Traditional Medical System Doctors(Ayurvedic)</option>
+        <option value="doctor_modern">Modern Medical System Doctor (MBBS)</option>
+        <option value="doctor_traditional">Traditional Medical System Doctor (Ayurvedic)</option>
         <option value="patient">Patient</option>
         <option value="trainer">Yoga Trainer</option>
       </select>
 
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Enter your username" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
       <label for="password">Password</label>
       <input type="password" id="password" placeholder="Enter your password" required />
@@ -106,19 +125,43 @@
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
       e.preventDefault();
-      
+
       const domain = document.getElementById("domain").value;
-      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      if (!domain || !username || !password) {
+      if (!domain || !email || !password) {
         alert("Please fill in all fields.");
         return;
       }
 
-      alert(`Logged in as ${domain.toUpperCase()}:\nUsername: ${username}`);
+      try {
+        const response = await axios.post("http://localhost:3000/api/login", {
+          domain,
+          email,
+          password
+        });
+
+        alert(response.data.message);
+
+        // Redirect based on role
+        if (domain === "admin") {
+          window.location.href = "admin-dashboard.html";
+        } else if (domain === "doctor_modern" || domain === "doctor_traditional") {
+          window.location.href = "doctor-dashboard.html";
+        } else if (domain === "trainer") {
+          window.location.href = "trainer-dashboard.html";
+        } else if (domain === "patient") {
+          window.location.href = "patient-dashboard.html";
+        } else {
+          alert("Logged in, but no dashboard found for this role.");
+        }
+
+      } catch (err) {
+        alert(err.response?.data?.message || "Login failed.");
+      }
     });
   </script>
 </body>

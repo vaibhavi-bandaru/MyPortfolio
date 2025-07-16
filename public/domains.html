@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Therapy & Guidance System</title>
+  <style>
+    /* Background video styling */
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -2;
+      object-fit: cover;
+      filter: blur(8px);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .main-container {
+  display: flex;
+  /* justify-content: center; */
+  margin-left: 250px;      /* horizontally center both panes */
+  align-items: center;          /* vertically center both panes */
+  gap: 50px;
+  height: 100vh;                /* full viewport height for centering */
+  padding: 60px;
+}
+
+
+    .left-pane {
+      flex: 0 0 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    h2 {
+      color: purple;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: left;
+      text-shadow:
+        -1px -1px 0 white,
+         1px -1px 0 white,
+        -1px  1px 0 white,
+         1px  1px 0 white;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .button-container button {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid purple;
+      border-radius: 25px;
+      background-color: white;
+      color: purple;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .button-container button:hover {
+      background-color: #e6e0f8;
+    }
+
+    .right-pane {
+      flex: 1;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    .checkbox-group, .radio-group {
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      margin-right: 10px;
+    }
+
+    button.submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button.submit:hover {
+      background-color: #45a049;
+    }
+    #patientForm {
+  margin-top: 500px;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="bg_vd2.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="main-container">
+    <!-- Left side: Heading and Buttons -->
+    <div class="left-pane">
+      <h2>SELECT YOUR DOMAIN</h2>
+      <div class="button-container">
+        <button onclick="showForm('doctorForm')">Modern Doctors / Traditional Doctors</button>
+        <button onclick="showForm('patientForm')">Patients</button>
+        <button onclick="showForm('yogaForm')">Yoga Trainers</button>
+      </div>
+    </div>
+
+    <!-- Right side: Forms -->
+    <div class="right-pane">
+      <!-- Doctor Registration Form -->
+      <div class="form-container" id="doctorForm">
+        <h3>Doctor Registration</h3>
+        <form>
+          <label>Username:</label>
+          <input type="text" required>
+
+          <label>Password:</label>
+          <input type="password" required>
+
+          <label>Confirm Password:</label>
+          <input type="password" required>
+
+          <label>Doctor Name:</label>
+          <input type="text" required>
+
+          <label>Specialization:</label>
+          <input type="text" required>
+
+          <label>Purpose:</label>
+          <input type="text" required>
+
+          <label>OP Fee:</label>
+          <input type="number" required>
+
+          <label>Timings:</label>
+          <input type="text" required>
+
+          <label>Email:</label>
+          <input type="email" required>
+
+          <label>Upload Honour Certificates:</label>
+          <input type="file" accept=".pdf,.jpg,.png,.jpeg,.doc,.docx">
+
+          <button type="submit" class="submit">Register</button>
+        </form>
+      </div>
+
+      <!-- Patient Registration Form -->
+      <div class="form-container" id="patientForm">
+        <h3>Patient Registration</h3>
+        <form>
+          <label>Username:</label>
+          <input type="text" required>
+
+          <label>Contact:</label>
+          <input type="tel" pattern="[0-9]{10}" required>
+
+          <label>Email:</label>
+          <input type="email" required>
+
+          <label>Password:</label>
+          <input type="password" required>
+
+          <label>Confirm Password:</label>
+          <input type="password" required>
+
+          <label>Date of Birth:</label>
+          <input type="date" required>
+
+          <label>Select District:</label>
+          <select required>
+            <option value="">-- Select District --</option>
+            <option>Hyderabad</option>
+            <option>Warangal</option>
+            <option>Vijayawada</option>
+            <option>Visakhapatnam</option>
+            <option>Others</option>
+          </select>
+
+          <label>Gender:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+
+          <label>Languages Known:</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="languages[]" value="English"> English</label>
+            <label><input type="checkbox" name="languages[]" value="Telugu"> Telugu</label>
+            <label><input type="checkbox" name="languages[]" value="Hindi"> Hindi</label>
+          </div>
+
+          <label>Your Problems (Symptoms):</label>
+          <textarea rows="4" required></textarea>
+
+          <label>Upload Medical Certificates/Documents:</label>
+          <input type="file" accept=".pdf,.jpg,.png,.jpeg,.doc,.docx">
+
+          <button type="submit" class="submit">Register</button>
+        </form>
+      </div>
+
+      <!-- Yoga Trainer Registration Form -->
+      <div class="form-container" id="yogaForm">
+        <h3>Yoga Trainer Registration</h3>
+        <form>
+          <label>Username:</label>
+          <input type="text" required>
+
+          <label>Contact:</label>
+          <input type="tel" pattern="[0-9]{10}" required>
+
+          <label>Email:</label>
+          <input type="email" required>
+
+          <label>Password:</label>
+          <input type="password" required>
+
+          <label>Confirm Password:</label>
+          <input type="password" required>
+
+          <label>Trainer Name:</label>
+          <input type="text" required>
+
+          <label>Timings:</label>
+          <input type="text" required>
+
+          <label>Fee:</label>
+          <input type="number" required>
+
+          <label>Upload Honour Certificates:</label>
+          <input type="file" accept=".pdf,.jpg,.png,.jpeg,.doc,.docx">
+
+          <button type="submit" class="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showForm(formId) {
+      const forms = document.querySelectorAll('.form-container');
+      forms.forEach(form => form.style.display = 'none');
+      document.getElementById(formId).style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
